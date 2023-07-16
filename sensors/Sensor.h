@@ -140,6 +140,17 @@ class DoubleTapSensor : public SysfsPollingOneShotSensor {
               static_cast<SensorType>(static_cast<int32_t>(SensorType::DEVICE_PRIVATE_BASE) + 1)) {}
 };
 
+const std::string kTsSingleTapPressedPath = SINGLE_TAP_PATH;
+
+class SingleTapSensor : public SysfsPollingOneShotSensor {
+  public:
+    SingleTapSensor(int32_t sensorHandle, ISensorsEventCallback* callback)
+        : SysfsPollingOneShotSensor(
+              sensorHandle, callback, kTsSingleTapPressedPath,
+              "Single Tap Sensor", "co.aospa.sensor.single_tap",
+              static_cast<SensorType>(static_cast<int32_t>(SensorType::DEVICE_PRIVATE_BASE) + 1)) {}
+};
+
 }  // namespace implementation
 }  // namespace subhal
 }  // namespace V2_1
